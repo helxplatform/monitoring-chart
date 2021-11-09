@@ -22,20 +22,14 @@ cost-analyzer:
   global:
     grafana:
       enabled: false
-      # -- If deploying to a namespace other than 'helx' then replace 'helx' here
-      # with the namespace.
-      domainName: monitoring-grafana.helx
+      domainName: monitoring-grafana
     prometheus:
       enabled: false
-      # -- If deploying to a namespace other than 'helx' then replace 'helx' here
-      # with the namespace.
-      fqdn: http://monitoring-kube-prometheus-prometheus.helx:9090
+      fqdn: http://monitoring-kube-prometheus-prometheus:9090
     notifications:
       alertmanager:
         enabled: false
-        # -- If deploying to a namespace other than 'helx' then replace 'helx' here
-        # with the namespace.
-        fqdn: http://monitoring-kube-prometheus-alertmanager.helx:9093
+        fqdn: http://monitoring-kube-prometheus-alertmanager:9093
 
 # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 kube-prometheus-stack:
@@ -56,9 +50,7 @@ kube-prometheus-stack:
       - name: Loki
         type: loki
         access: proxy
-        # -- If deploying to a namespace other than 'helx' then replace 'helx' here
-        # with the namespace.
-        url: http://monitoring-loki.helx:3100
+        url: http://monitoring-loki:3100
         version: 1
   prometheusOperator:
     enabled: true
@@ -106,9 +98,7 @@ promtail:
   rbac:
     pspEnabled: true
   config:
-    # -- If deploying to a namespace other than 'helx' then replace 'helx' here
-    # with the namespace.
-    lokiAddress: http://monitoring-loki.helx:3100/loki/api/v1/push
+    lokiAddress: http://monitoring-loki:3100/loki/api/v1/push
 
 falco:
   enabled: true
@@ -116,9 +106,7 @@ falco:
     enabled: true
     config:
       alertmanager:
-        # -- If deploying to a namespace other than 'helx' then replace 'helx' here
-        # with the namespace.
-        hostport: http://alertmanager-operated.helx:9093
+        hostport: http://alertmanager-operated:9093
         minimumpriority: error
 
 # Use 'htpasswd -nBb -C 7 admin some-pass-really' to create credentials for

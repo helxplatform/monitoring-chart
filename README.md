@@ -2,7 +2,7 @@
 
 Monitoring stack for k8s clusters
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.2.1](https://img.shields.io/badge/AppVersion-0.2.1-informational?style=flat-square)
 
 # Monitoring
 
@@ -50,12 +50,12 @@ After a `helm upgrade`, prometheus-operator will start scraping metrics from tha
 |-----|------|---------|-------------|
 | basicauth-creds | string | `nil` |  |
 | cost-analyzer.enabled | bool | `true` |  |
-| cost-analyzer.global.grafana.domainName | string | `"monitoring-grafana.helx"` | If deploying to a namespace other than 'helx' then replace 'helx' here with the namespace. |
+| cost-analyzer.global.grafana.domainName | string | `"monitoring-grafana"` |  |
 | cost-analyzer.global.grafana.enabled | bool | `false` |  |
 | cost-analyzer.global.notifications.alertmanager.enabled | bool | `false` |  |
-| cost-analyzer.global.notifications.alertmanager.fqdn | string | `"http://monitoring-kube-prometheus-alertmanager.helx:9093"` | If deploying to a namespace other than 'helx' then replace 'helx' here with the namespace. |
+| cost-analyzer.global.notifications.alertmanager.fqdn | string | `"http://monitoring-kube-prometheus-alertmanager:9093"` |  |
 | cost-analyzer.global.prometheus.enabled | bool | `false` |  |
-| cost-analyzer.global.prometheus.fqdn | string | `"http://monitoring-kube-prometheus-prometheus.helx:9090"` | If deploying to a namespace other than 'helx' then replace 'helx' here with the namespace. |
+| cost-analyzer.global.prometheus.fqdn | string | `"http://monitoring-kube-prometheus-prometheus:9090"` |  |
 | cost-analyzer.prometheus.kube-state-metrics.disabled | bool | `true` |  |
 | cost-analyzer.prometheus.kube-state-metrics.enabled | bool | `false` |  |
 | cost-analyzer.prometheus.kube-state-metrics.rbac.create | bool | `false` |  |
@@ -65,7 +65,7 @@ After a `helm upgrade`, prometheus-operator will start scraping metrics from tha
 | cost-analyzer.reporting.productAnalytics | bool | `false` |  |
 | cost-analyzer.reporting.valuesReporting | bool | `false` |  |
 | falco.enabled | bool | `true` |  |
-| falco.falcosidekick.config.alertmanager.hostport | string | `"http://alertmanager-operated.helx:9093"` | If deploying to a namespace other than 'helx' then replace 'helx' here with the namespace. |
+| falco.falcosidekick.config.alertmanager.hostport | string | `"http://alertmanager-operated:9093"` |  |
 | falco.falcosidekick.config.alertmanager.minimumpriority | string | `"error"` |  |
 | falco.falcosidekick.enabled | bool | `true` |  |
 | kube-prometheus-stack.alertmanager.enabled | bool | `true` |  |
@@ -73,7 +73,7 @@ After a `helm upgrade`, prometheus-operator will start scraping metrics from tha
 | kube-prometheus-stack.grafana.additionalDataSources[0].access | string | `"proxy"` |  |
 | kube-prometheus-stack.grafana.additionalDataSources[0].name | string | `"Loki"` |  |
 | kube-prometheus-stack.grafana.additionalDataSources[0].type | string | `"loki"` |  |
-| kube-prometheus-stack.grafana.additionalDataSources[0].url | string | `"http://monitoring-loki.helx:3100"` | If deploying to a namespace other than 'helx' then replace 'helx' here with the namespace. |
+| kube-prometheus-stack.grafana.additionalDataSources[0].url | string | `"http://monitoring-loki:3100"` |  |
 | kube-prometheus-stack.grafana.additionalDataSources[0].version | int | `1` |  |
 | kube-prometheus-stack.grafana.enabled | bool | `true` |  |
 | kube-prometheus-stack.prometheus-node-exporter.resources.limits.cpu | string | `"500m"` |  |
@@ -96,7 +96,7 @@ After a `helm upgrade`, prometheus-operator will start scraping metrics from tha
 | loki.persistence.size | string | `"10Gi"` |  |
 | loki.replicas | int | `3` |  |
 | loki.serviceMonitor.enabled | bool | `true` |  |
-| promtail.config.lokiAddress | string | `"http://monitoring-loki.helx:3100/loki/api/v1/push"` | If deploying to a namespace other than 'helx' then replace 'helx' here with the namespace. |
+| promtail.config.lokiAddress | string | `"http://monitoring-loki:3100/loki/api/v1/push"` |  |
 | promtail.enabled | bool | `true` |  |
 | promtail.rbac.pspEnabled | bool | `true` |  |
 
