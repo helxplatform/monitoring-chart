@@ -8,7 +8,7 @@ metadata:
     {{- include "monitoring.labels" . | nindent 4 }}
     release: "{{ .Release.Name }}"
   name: "{{ .Release.Name }}-kubecost"
-  namespace: monitoring
+  namespace: "{{ .Release.Namespace }}"
 spec:
   groups:
     - name: CPU
