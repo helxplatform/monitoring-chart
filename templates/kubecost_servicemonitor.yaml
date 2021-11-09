@@ -16,7 +16,7 @@ spec:
     scrapeTimeout: 10s
   namespaceSelector:
     matchNames:
-    - monitoring
+    - "{{ .Release.Namespace }}"
   selector:
     matchLabels:
       app.kubernetes.io/instance: monitoring

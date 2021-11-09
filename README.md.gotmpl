@@ -17,10 +17,12 @@ The following components are all included:
 
 ## Installing
 
-```
-kubectl create ns monitoring
+The monitoring chart needs to be deployed into the 'helx' namespace.
 
-helm upgrade --install -n monitoring monitoring . -f your-values.yaml
+```
+kubectl create ns helx
+
+helm upgrade --install -n helx monitoring . -f your-values.yaml
 ```
 
 (replace the values file with your environment if different)

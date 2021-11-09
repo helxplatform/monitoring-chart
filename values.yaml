@@ -1,4 +1,3 @@
-# These values are the same across all clusters. Put cluster-specific config in values/<clustername>.yaml
 # https://github.com/kubecost/cost-analyzer-helm-chart
 cost-analyzer:
   enabled: true
@@ -23,14 +22,20 @@ cost-analyzer:
   global:
     grafana:
       enabled: false
-      domainName: monitoring-grafana.monitoring
+      # -- If deploying to a namespace other than 'helx' then replace 'helx' here
+      # with the namespace.
+      domainName: monitoring-grafana.helx
     prometheus:
       enabled: false
-      fqdn: http://monitoring-kube-prometheus-prometheus.monitoring:9090
+      # -- If deploying to a namespace other than 'helx' then replace 'helx' here
+      # with the namespace.
+      fqdn: http://monitoring-kube-prometheus-prometheus.helx:9090
     notifications:
       alertmanager:
         enabled: false
-        fqdn: http://monitoring-kube-prometheus-alertmanager.monitoring:9093
+        # -- If deploying to a namespace other than 'helx' then replace 'helx' here
+        # with the namespace.
+        fqdn: http://monitoring-kube-prometheus-alertmanager.helx:9093
 
 # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 kube-prometheus-stack:
@@ -51,7 +56,9 @@ kube-prometheus-stack:
       - name: Loki
         type: loki
         access: proxy
-        url: http://monitoring-loki.monitoring:3100
+        # -- If deploying to a namespace other than 'helx' then replace 'helx' here
+        # with the namespace.
+        url: http://monitoring-loki.helx:3100
         version: 1
   prometheusOperator:
     enabled: true
@@ -99,7 +106,9 @@ promtail:
   rbac:
     pspEnabled: true
   config:
-    lokiAddress: http://monitoring-loki.monitoring:3100/loki/api/v1/push
+    # -- If deploying to a namespace other than 'helx' then replace 'helx' here
+    # with the namespace.
+    lokiAddress: http://monitoring-loki.helx:3100/loki/api/v1/push
 
 falco:
   enabled: true
@@ -107,7 +116,9 @@ falco:
     enabled: true
     config:
       alertmanager:
-        hostport: http://alertmanager-operated.monitoring:9093
+        # -- If deploying to a namespace other than 'helx' then replace 'helx' here
+        # with the namespace.
+        hostport: http://alertmanager-operated.helx:9093
         minimumpriority: error
 
 # Use 'htpasswd -nBb -C 7 admin some-pass-really' to create credentials for
