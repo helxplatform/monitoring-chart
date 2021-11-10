@@ -11,7 +11,7 @@ cost-analyzer:
     productAnalytics: false
     logCollection: false
     errorReporting: false
-    # MUST BE FALSE! Otherwise ALL of values.yaml (including secrets) will be shipped to the kubecost people!
+    # -- MUST BE FALSE! Otherwise ALL of values.yaml (including secrets) will be shipped to the kubecost people!
     valuesReporting: false
   prometheus:
     kube-state-metrics:
@@ -22,14 +22,20 @@ cost-analyzer:
   global:
     grafana:
       enabled: false
-      domainName: monitoring-grafana
+      # -- If using a release name other than 'helx' then replace 'helx' with
+      # the release name.
+      domainName: helx-grafana
     prometheus:
       enabled: false
-      fqdn: http://monitoring-kube-prometheus-prometheus:9090
+      # -- If using a release name other than 'helx' then replace 'helx' with
+      # the release name.
+      fqdn: http://helx-kube-prometheus-prometheus:9090
     notifications:
       alertmanager:
         enabled: false
-        fqdn: http://monitoring-kube-prometheus-alertmanager:9093
+        # -- If using a release name other than 'helx' then replace 'helx' with
+        # the release name.
+        fqdn: http://helx-kube-prometheus-alertmanager:9093
 
 # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 kube-prometheus-stack:
@@ -50,7 +56,9 @@ kube-prometheus-stack:
       - name: Loki
         type: loki
         access: proxy
-        url: http://monitoring-loki:3100
+        # -- If using a release name other than 'helx' then replace 'helx' with
+        # the release name.
+        url: http://helx-loki:3100
         version: 1
   prometheusOperator:
     enabled: true
@@ -70,12 +78,12 @@ kube-prometheus-stack:
         limits:
           cpu: 1500m
           memory: 2000Mi
-  # kubeEtcd:
-  #   ## If your etcd is not deployed as a pod, specify IPs it can be found on
-  #   endpoints:
-  #   - 172.25.16.x
-  #   - 172.25.16.y
-  #   - 172.25.16.z
+  kubeEtcd:
+    # -- If your etcd is not deployed as a pod, specify IPs it can be found on
+    endpoints: {}
+    # - 172.25.16.x
+    # - 172.25.16.y
+    # - 172.25.16.z
 
 # https://github.com/grafana/helm-charts/tree/main/charts/loki
 loki:
@@ -98,7 +106,9 @@ promtail:
   rbac:
     pspEnabled: true
   config:
-    lokiAddress: http://monitoring-loki:3100/loki/api/v1/push
+    # -- If using a release name other than 'helx' then replace 'helx' with
+    # the release name.
+    lokiAddress: http://helx-loki:3100/loki/api/v1/push
 
 falco:
   enabled: true
