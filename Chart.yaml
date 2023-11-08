@@ -3,7 +3,7 @@ name: monitoring
 description: Monitoring stack for k8s clusters
 type: application
 # INTERNAL USE ONLY, don't bother incrementing
-version: 0.2.2
+version: 0.2.3
 appVersion: 0.2.2
 
 dependencies:
