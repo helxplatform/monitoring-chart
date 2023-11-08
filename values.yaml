@@ -80,7 +80,7 @@ kube-prometheus-stack:
           memory: 2000Mi
   kubeEtcd:
     # -- If your etcd is not deployed as a pod, specify IPs it can be found on
-    endpoints: {}
+    endpoints: []
     # - 172.25.16.x
     # - 172.25.16.y
     # - 172.25.16.z
